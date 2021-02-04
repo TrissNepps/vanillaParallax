@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Vanilla Parallax</title>
+  </head>
+  <body>
+    <section>
+      <ul>
+        <li class="scroll" data-rate="1.4" data-direction="vertical">par</li>
+        <li>al</li>
+        <li class="scroll" data-rate="1.8" data-direction="vertical">lax</li>
+      </ul>
+      <span
+        class="scroll"
+        data-rateY="1"
+        data-rateX=".8"
+        data-direction="horizontal"
+      ></span>
+    </section>
+    <!-- /*Section below is needed for scroll distance for parallax*/ -->
+    <section></section>
+
+    <script>
+      window.addEventListener("scroll", function (e) {
+        const target = document.querySelectorAll(".scroll");
+        // target.style.background = "#ffcc00";
+        // console.log(target.style);
+        // target.style.transform = "translate3d(0px,50px,0px";
+        // console.log(window.pageYOffset);
+        // let scrolled = window.pageYOffset;
+        // let rate = scrolled * 1.4;
+        // target.style.transform = "translate3d(0px, " + rate + "px,0px)";
+
+        let i = 0,
+          length = target.length;
+        for (i; i < length; i++) {
+          let pos = window.pageYOffset * target[i].dataset.rate;
+          if (target[i].dataset.direction === "vertical") {
+            target[i].style.transform = "translate3d(0px, " + pos + "px,0px)";
+          } else {
+            let posX = window.pageYOffset * target[i].dataset.ratex;
+            let posY = window.pageYOffset * target[i].dataset.ratey;
+            target[i].style.transform =
+              "translate3d(" + posX + "px, " + posY + "px, 0px)";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
